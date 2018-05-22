@@ -51,7 +51,8 @@ function calculator(req, res) {
   }
 }
 
-app.listen(5000, () => console.log('ok'));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log('ok'));
 
 function noteCreate(req, res) {
   const task = new Task({
@@ -80,6 +81,7 @@ function noteCreate(req, res) {
       });
     });
 }
+
 function noteGetAll(req, res) {
   Task.find()
     .select('-__v')
@@ -94,6 +96,7 @@ function noteGetAll(req, res) {
         .json(err);
     });
 }
+
 function noteDelById(req, res) {
   const id = req.params.taskId;
   Task.remove({ _id: id })
